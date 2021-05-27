@@ -1,0 +1,27 @@
+restart
+F
+max_iter
+200
+delta_t
+5.0
+delta_t_correction
+1.01
+num_of_threads
+10
+convergence_threshold
+1E-7
+local_wannierization
+T
+12
+15
+48 35 9 22 61 73 27 40 1 14 54 66
+step_findwf
+20
+unocc_state
+F
+subspace_wannierization
+F
+subspace_factor
+3
+subspace_threshold
+2d0

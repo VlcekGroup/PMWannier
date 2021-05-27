@@ -1,0 +1,12 @@
+restart
+t
+max_iter
+200
+delta_t
+1.02
+delta_t_correction
+1.01
+num_of_threads
+10
+convergence_threshold
+1E-7
