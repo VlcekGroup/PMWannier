@@ -14,7 +14,7 @@ In each folder of the source code, simply hit "make" to install the main code (w
 (1) cnt.ini : provides the coordinates of atoms.\
 (2) wf.bin : provides the canonical orbitals as the starting point.\
 (3) input : specifies the parameters for the calculation, see Input Specifications. The name of this file must be "input".\
-(4) wannier.bin : this file is needed if the job is restarted from the previous one.\
+(4) wannier.bin : this file is needed if the job is restarted from the previous one.
 
 ### Output files after running a job
 (1) wannier.bin : contains all the unitary-transformed states in the occupied/specified subspace.\
@@ -23,7 +23,7 @@ In each folder of the source code, simply hit "make" to install the main code (w
 (4) wannier_unocc_trun.bin : a truncated version of the wannier_unooc.bin with virtual wannierzation functions localized on the specified atoms only.\
 (5) wannier_tmp.bin : a temporary wannier function bin file that is updated every iteration when the objective function change is positive.\
 (6) wannier_sv.bin : this bin file will be generated when subspace_wannierization is true and restart_old is false. This will save the wannier functions before the subspace calculation is invoked. It helps optimizing the subspace parameters.\
-(7) Output: by default the output information is written to screen. File with the name "Output" contains some of the input information, the objective function value at each iteration, the time spent at each step, and the delta_t value at each step.\
+(7) Output: by default the output information is written to screen. File with the name "Output" contains some of the input information, the objective function value at each iteration, the time spent at each step, and the delta_t value at each step.
 
 ### Input Specification
 #### Basic function
@@ -49,8 +49,8 @@ num_of_threads\
 (Integer. number of threads for MPI calculations. Default: 1)\
 \
 convergence_threshold\
-(Real. This specifies the threshold to exit the iteration when the objective function change is less than the value. Default: 1E-8)\
-\
+(Real. This specifies the threshold to exit the iteration when the objective function change is less than the value. Default: 1E-8)
+
 #### Local wannierzation
 local_wannierization\
 (Logical. This is to perform wannierization on specified atoms. Default: F, If true, then in the following three lines you will need to specify: number of atoms for local wannierization, number of wannier functions of the specified atoms, the labels of the specified atoms)\
@@ -69,7 +69,7 @@ bulk\
 (Logical. This is to obtain virtual wannier function together with local wannierzation, i.e., obtain virtual wannier functions on specified atoms. Default: F)\
 \
 num_of_unocc\
-(Integer. If bulk is F, then you can choose to provide the number of virtual orbitals for the wannierization. Otherwise the program will take all the bound virtual states for wannierization)\
+(Integer. If bulk is F, then you can choose to provide the number of virtual orbitals for the wannierization. Otherwise the program will take all the bound virtual states for wannierization)
 
 #### Subspace Wannerization
 subspace_wannierzation\
@@ -85,7 +85,7 @@ restart_old\
 (Logical. This is to connect the full space wannierization and the subspace wannierzation. Default: F. If this is true, it will read the wannier.bin file and continue with subspace wannierzation. Note that “restart” has to be true as well if this one is true.)\
 \
 specific_state\
-(Logical. This is to perform wannierization using the KS states as specified in the following lines only. Default: F. If this is true, then in the next line provide the number of states used in the wannierzation and then followed by the state indices in one line.)\
+(Logical. This is to perform wannierization using the KS states as specified in the following lines only. Default: F. If this is true, then in the next line provide the number of states used in the wannierzation and then followed by the state indices in one line.)
 
 ## Post-PMwanner codes (tools)
 
@@ -96,11 +96,11 @@ This is to generate wannier_trun.bin file from wannier.bin (or wannier_tmp.bin) 
 #### Files needed to run a job
 (1) findWF : this is an input file providing the number of atoms, number of wannier functions wanted, and the atom labels. See the specifications.\
 (2) wannier.bin : defined as before.\
-(3) cnt.ini : defined as before.\
+(3) cnt.ini : defined as before.
 #### Output files after running a job
 (1) wannier_trun.bin : defined as before.\
 (2) wannier_unocc_trun.bin : defined as before.\
-(3) Output file : contains the information of the job.\
+(3) Output file : contains the information of the job.
 #### Input Specifications
 num_occ_lw\
 (Integer. This specifies the number of wannier functions to find on the specified atoms)\
@@ -115,17 +115,17 @@ unocc_state\
 (Logical. This is to get virtual wannier functions on the specified atoms.)\
 \
 num_unocc_lw\
-(Integer. This specifies the number of virtual wannier functions of interest on the specified atoms.)\
+(Integer. This specifies the number of virtual wannier functions of interest on the specified atoms.)
 
 ### mkorb.x
-This is to make reconstrcuted orbitals from the wannier functions of a composite system (atoms/molecules of interest plus the rest).\
+This is to make reconstrcuted orbitals from the wannier functions of a composite system (atoms/molecules of interest plus the rest).
 #### Files needed to run a job
 (1) wannier_trun.bin : defined as before.\
 (1) wannier_mol.bin : contains the wannier functions of the isolated molecules.\
-(2) wf_mol.bin : contains the canonical orbitals of the isolated molecules.\
+(2) wf_mol.bin : contains the canonical orbitals of the isolated molecules.
 #### Output files after running a job
 (1) mdorb00X.bin : X represents the state index. This is a binary file with similar structure to the wf.bin.\
-(2) orb00X.bin: X represent the state index. This is formatted file used for many-body calculation.\
+(2) orb00X.bin: X represent the state index. This is formatted file used for many-body calculation.
 
 ## Typical Input Examples for wannier.x
 ### One benzene molecule
@@ -140,7 +140,7 @@ delta_t_correction\
 num_of_threads\
 50\
 convergence_threshold\
-1E-8\
+1E-8
 ### Nine benezene molecules
 restart\
 f\
@@ -160,7 +160,7 @@ t\
 15 (# of valence electrons of one benzene molecule/2 )\
 48 35 9 22 61 73 27 40 1 14 54 66 (the atom labels of the 12 atoms)\
 step_findwf\
-20 (it will print the orbital indices of the 15 wannier functions every 20 effective iterations)\
+20 (it will print the orbital indices of the 15 wannier functions every 20 effective iterations)
 
 ## Typical Input Examples for findWF.x
 ### Nine benzene molecules
