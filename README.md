@@ -1,6 +1,7 @@
 # Manual for PMwannier package
-
-This code performs unitary transformations on canonical orbitals to obtain a set of localized states. It adopts the Pipek-Mezey principle in the evaluation of the localization and employs steepest descent algorithm for the maximization of the objective function. It is primarily designed for the localization of occupied states but also available for virtual states if a specific virtual space is provided. For large complex ssystems, PWwannier code is able to search for the localized states on atoms (molecules) of interest, regardless of the localization of the rest. Further, the code can perform unitary transformations in a truncated subspace in order to lower the computational cost. In addition to the main program, tools in this package help determining the localized states on the selected atoms (molecules) and generate reconstructed orbitals. 
+This code performs unitary transformations on canonical orbitals to obtain a set of localized states. It adopts the Pipek-Mezey principle in the evaluation of the localization and employs steepest descent algorithm for the maximization of the objective function. It is primarily designed for the localization of occupied states but also available for virtual states if a specific virtual space is provided. For large complex ssystems, PWwannier code is able to search for the localized states on atoms (molecules) of interest, regardless of the localization of the rest. Further, the code can perform unitary transformations in a truncated subspace in order to lower the computational cost. In addition to the main program, tools in this package help determining the localized states on the selected atoms (molecules) and generate reconstructed orbitals.\
+\
+The theory background of this program is based on the paper by Elvar Ö Jónsson, Susi Lehtola, Martti Puska, and Hannes Jónsson (J. Chem. Theory Comput. 2017, 13, 2, 460–474). Local and subspace wannierizations are new features for tackling large complex systems. The program is mostly self-written by the authors, but it has two publicly available subroutines, primarily the calculation of the exponential of a matrix provided by Cleve Moler and Charles Van Loan (SIAM Review, Volume 45, Number 1, March 2003, pages 3-49.), and the Gamma function provided by John Burkardt (Handbook of Mathematical Functions, National Bureau of Standards, 1964 and The Mathematica Book, Fourth Edition, Cambridge University Press, 1999)
 
 ## Installation
 In each folder of the source code, simply hit "make" to install the main code (wannier.x) and other tools. Note that for the main code, openmpi library is needed.
@@ -22,7 +23,7 @@ In each folder of the source code, simply hit "make" to install the main code (w
 (4) wannier_unocc_trun.bin : a truncated version of the wannier_unooc.bin with virtual wannierzation functions localized on the specified atoms only.\
 (5) wannier_tmp.bin : a temporary wannier function bin file that is updated every iteration when the objective function change is positive.\
 (6) wannier_sv.bin : this bin file will be generated when subspace_wannierization is true and restart_old is false. This will save the wannier functions before the subspace calculation is invoked. It helps optimizing the subspace parameters.\
-(6) Output: by default the output information is written to screen. File with the name "Output" contains some of the input information, the objective function value at each iteration, the time spent at each step, and the delta_t value at each step.\
+(7) Output: by default the output information is written to screen. File with the name "Output" contains some of the input information, the objective function value at each iteration, the time spent at each step, and the delta_t value at each step.\
 
 ### Input Specification
 #### Basic function
@@ -125,5 +126,51 @@ This is to make reconstrcuted orbitals from the wannier functions of a composite
 #### Output files after running a job
 (1) mdorb00X.bin : X represents the state index. This is a binary file with similar structure to the wf.bin.\
 (2) orb00X.bin: X represent the state index. This is formatted file used for many-body calculation.\
+
+## Typical Input Examples for wannier.x
+### One benzene molecule
+restart\
+f\
+max_iter\
+200\
+delta_t\
+4.0\
+delta_t_correction\
+1.1\
+num_of_threads\
+50\
+convergence_threshold\
+1E-8\
+### Nine benezene molecules
+restart\
+f\
+max_iter\
+200\
+delta_t\
+4.0\
+delta_t_correction\
+1.1\
+num_of_threads\
+50\
+convergence_threshold\
+1E-8\
+local_wannierization\
+t\
+12 (# of atoms of one benzene molecule)\
+15 (# of valence electrons of one benzene molecule/2 )\
+48 35 9 22 61 73 27 40 1 14 54 66 (the atom labels of the 12 atoms)\
+step_findwf\
+20 (it will print the orbital indices of the 15 wannier functions every 20 effective iterations)\
+
+## Typical Input Examples for findWF.x
+### Nine benzene molecules
+num_occ_lw\
+15\
+num_atom_lw\
+12\
+48 35 9 22 61 73 27 40 1 14 54 66\
+num_of_threads\
+10
+
 
 
